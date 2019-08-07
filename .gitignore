@@ -64,3 +64,5 @@ Assets/\.DS_Store
 *.PNG
 
 *.ogg
+
+*.prefab
