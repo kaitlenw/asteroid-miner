@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 {
     private Rigidbody2D r2d;
     public Rigidbody2D laser;
+    public SpriteRenderer shield;
     public float speed = 5f;
     public float turnSpeed = 2.5f;
     public float projSpeed = 2.5f;
@@ -45,5 +46,12 @@ public class Player : MonoBehaviour
     void OnCollisionEnter2D()
     {
             audioSource.PlayOneShot(hitMeteor);
+            shield.enabled = true;
+            Invoke("hideShield", 0.2f);
+    }
+
+    void hideShield()
+    {
+        shield.enabled = false;
     }
 }
