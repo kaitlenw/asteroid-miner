@@ -6,6 +6,7 @@ WIP of an Asteroid Miner clone. Example footage of the orginal game can be found
 The clone currently has the following features:
 - Spaceship movement, including drifting when the thrusters are no longer active
 - Firing bullets (including pew pew sound effect :grin:)
+- Spaceship collisions with meteors - bounces off, with sound effects
 
 ## Coming Soon
 The following features will be implemented soon:
