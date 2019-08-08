@@ -42,10 +42,8 @@ public class Player : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter()
+    void OnCollisionEnter2D()
     {
-            audioSource.PlayOneShot(hitMeteor, 0.7f);
-            // r2d.velocity = -r2d.velocity;
-           
+            audioSource.PlayOneShot(hitMeteor);
     }
 }
