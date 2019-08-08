@@ -9,9 +9,12 @@ public class Player : MonoBehaviour
     public float turnSpeed = 2.5f;
     public float projSpeed = 2.5f;
 
-    // Update is called once per frame
-    void Update ()
+    public AudioClip shootLaser;
+    private AudioSource audioSource; 
+
+    void Start ()
     {
+        audioSource = GetComponent<AudioSource>();
         
     }
 
@@ -32,6 +35,7 @@ public class Player : MonoBehaviour
         {
             // Instantiate an laser
             Rigidbody2D laserInstance = Instantiate(laser, transform.position, transform.rotation);
+            audioSource.PlayOneShot(shootLaser, 0.7F);
         }
     }
 }
