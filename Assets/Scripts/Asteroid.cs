@@ -16,7 +16,6 @@ public class Asteroid : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-            Debug.Log("BOOM");
         if (collision.gameObject.tag == "Laser")
         {
             GetComponent<SpriteRenderer>().enabled = false;
