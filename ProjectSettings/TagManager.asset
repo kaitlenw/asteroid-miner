@@ -4,7 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - asteroid
+  - Asteroid
+  - Laser
   layers:
   - Default
   - TransparentFX
@@ -14,9 +15,9 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
+  - Player
+  - Asteroids
+  - Lasers
   - 
   - 
   - 

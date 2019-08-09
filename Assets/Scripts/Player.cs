@@ -47,10 +47,10 @@ public class Player : MonoBehaviour
     {
             audioSource.PlayOneShot(hitMeteor);
             shield.enabled = true;
-            Invoke("hideShield", 0.2f);
+            Invoke("HideShield", 0.2f);
     }
 
-    void hideShield()
+    void HideShield()
     {
         shield.enabled = false;
     }
