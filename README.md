@@ -1,6 +1,6 @@
 # Asteroid Miner
 
-WIP of an Asteroid Miner clone. Example footage of the orginal game can be found [here](https://www.youtube.com/watch?v=v1fseBg0E-g).
+WIP of an Asteroid Miner clone. Example footage of the original game can be found [here](https://www.youtube.com/watch?v=v1fseBg0E-g).
 
 ## Features Currently Implemented
 The clone currently has the following features:
