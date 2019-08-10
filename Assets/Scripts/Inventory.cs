@@ -5,14 +5,27 @@ using System.Linq;
 
 public class Inventory  : MonoBehaviour
 {
+    #region Singleton
+    public static Inventory instance;
+    void Awake()
+    {
+        if (instance != null)
+        {
+            Debug.LogWarning("More than one instance of Inventory found.");
+            return;
+        }
+        inventory = new int[itemDatabase.GetNumberOfUniqueItems()];
+        instance = this;
+    }
+    #endregion
     public ItemDatabase itemDatabase;
-    private int[] inventory;
+    public int[] inventory;
     // how many items the inventory can hold
     public int inventoryCapacity;
 
+
     void Start()
     {
-        inventory = new int[itemDatabase.GetNumberOfUniqueItems()];
     }
 
     // returns true if the item fits in the inventory

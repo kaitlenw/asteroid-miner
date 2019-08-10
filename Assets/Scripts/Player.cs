@@ -13,14 +13,13 @@ public class Player : MonoBehaviour
     public AudioClip shootLaser;
     public AudioClip hitMeteor;
     private AudioSource audioSource;
-    public Inventory inventory;
+    public Inventory inventory; 
 
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
         r2d = GetComponent<Rigidbody2D>();
-        inventory = GetComponent<Inventory>();
-
+        inventory = Inventory.instance;
     }
 
     void FixedUpdate()

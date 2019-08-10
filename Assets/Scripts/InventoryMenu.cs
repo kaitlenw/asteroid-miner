@@ -6,8 +6,12 @@ public class InventoryMenu : MonoBehaviour
 {
     public static bool isInventoryShowing;
     public GameObject inventoryUI;
+    public Inventory inventory;
 
-    // Update is called once per frame
+    void Start()
+    {
+        inventory = Inventory.instance;
+    }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
