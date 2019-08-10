@@ -22,5 +22,5 @@ public class Laser : MonoBehaviour
     {
         // Destroy the bullet 
         Destroy(gameObject);
-    } 
+    }
 }
