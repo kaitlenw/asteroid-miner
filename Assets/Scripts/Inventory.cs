@@ -26,7 +26,7 @@ public class Inventory  : MonoBehaviour
     // returns true if the item fits in the inventory
     public bool AddItem(int id)
     {
-        if (inventory.Sum() < inventoryCapacity - 1)
+        if (Count() < inventoryCapacity - 1)
         {
             inventory[id] += 1;
             return true;
@@ -50,5 +50,9 @@ public class Inventory  : MonoBehaviour
             inv += i + ": " + inventory[i] + ", ";
         }
         return inv;
+    }
+
+    public int Count() {
+        return inventory.Sum();
     }
 }
