@@ -14,19 +14,14 @@ public class Inventory  : MonoBehaviour
             Debug.LogWarning("More than one instance of Inventory found.");
             return;
         }
-        inventory = new int[itemDatabase.GetNumberOfUniqueItems()];
+        inventory = new int[numberOfUniqueItems];
         instance = this;
     }
     #endregion
-    public ItemDatabase itemDatabase;
+    public int numberOfUniqueItems = 3;
     public int[] inventory;
     // how many items the inventory can hold
     public int inventoryCapacity;
-
-
-    void Start()
-    {
-    }
 
     // returns true if the item fits in the inventory
     public bool AddItem(int id)
@@ -41,10 +36,9 @@ public class Inventory  : MonoBehaviour
             return false;
         }
     }
-    public bool AddItem(string name)
+    public bool AddItem(Item item)
     {
-        Item itemToAdd = itemDatabase.GetItem(name);
-        return AddItem(itemToAdd.id);
+        return AddItem(item.id);
     }
 
 

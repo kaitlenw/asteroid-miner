@@ -2,29 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item 
+[CreateAssetMenu(fileName = "New Item", menuName="Inventory/Item")]
+public class Item : ScriptableObject
 {
     public int id;
-    public string name;
+    public string itemName;
     public string description;
     public Sprite image;
-    
-    public Dictionary<string, int> stats = new Dictionary<string, int>();
+    public int sellingPrice;
 
-    public Item(int id, string name, string description, Dictionary<string, int> stats)
+    public Item(int id, string itemName, string description, int sellingPrice)
     {
         this.id = id;
-        this.name = name;
+        this.itemName = itemName;
         this.description = description;
-        this.image = Resources.Load<Sprite>("Sprites/" + name);
-        this.stats = stats;
+        this.image = Resources.Load<Sprite>("Sprites/" + itemName);
+        this.sellingPrice = sellingPrice;
     }
 
     public Item(Item item) {
         this.id = item.id;
-        this.name = item.name;
+        this.itemName = item.itemName;
         this.description = item.description;
-        this.image = Resources.Load<Sprite>("Sprites/" + item.name);
-        this.stats = item.stats;
+        this.image = Resources.Load<Sprite>("Sprites/" + item.itemName);
+        this.sellingPrice = item.sellingPrice;
     }
 }

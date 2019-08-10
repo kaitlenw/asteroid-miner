@@ -13,22 +13,9 @@ public class ItemDatabase  : MonoBehaviour
     {
         items = new List<Item>() 
         {
-            new Item(0, "bronze", "A very common material, with many uses.",
-            new Dictionary<string, int>
-            {
-                {"Selling Price", 25},
-            }),
-            new Item(1, "silver", "A fairly common material, valued by many.",
-            new Dictionary<string, int>
-            {
-                {"Selling Price", 50},
-            }),
-            new Item(2, "gold", "A rare material, many would pay good money to obtain.",
-            new Dictionary<string, int>
-            {
-                {"Selling Price", 100},
-            })
-        };
+            new Item(0, "bronze", "A very common material, with many uses.", 25),
+            new Item(1, "silver", "A fairly common material, valued by many.", 50),
+            new Item(2, "gold", "A rare material, many would pay good money to obtain.", 100)};
     }
     public Item GetItem(int id)
     {
@@ -37,7 +24,7 @@ public class ItemDatabase  : MonoBehaviour
 
     public Item GetItem(string name)
     {
-        return items.Find(item => item.name == name);
+        return items.Find(item => item.itemName == name);
     }
 
     public int GetNumberOfUniqueItems()
