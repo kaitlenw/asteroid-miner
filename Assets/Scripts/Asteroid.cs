@@ -10,6 +10,8 @@ public class Asteroid : MonoBehaviour
     public AudioClip explodeAsteroid;
 
     public Rigidbody2D material;
+
+    public float explosionDuration;
     
     void Start()
     {
@@ -27,9 +29,17 @@ public class Asteroid : MonoBehaviour
             audioSource.PlayOneShot(explodeAsteroid, 0.7f);
             if (material != null)
             {
-                Instantiate(material, transform.position, transform.rotation);
+                Invoke("CreateMaterial", explosionDuration);
             }
-            Destroy(gameObject, 0.8f);
+            else
+            {
+                Destroy(gameObject, explosionDuration);
+            }
         }
+    }
+    void CreateMaterial()
+    {
+        Instantiate(material, transform.position, transform.rotation);
+        Destroy(gameObject);
     }
 }

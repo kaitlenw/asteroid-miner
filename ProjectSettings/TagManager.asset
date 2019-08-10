@@ -6,7 +6,9 @@ TagManager:
   tags:
   - Asteroid
   - Laser
-  - BronzeThing
+  - bronze
+  - silver
+  - gold
   layers:
   - Default
   - TransparentFX
