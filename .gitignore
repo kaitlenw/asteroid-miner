@@ -68,3 +68,5 @@ Assets/\.DS_Store
 *.prefab
 
 *.ttf
+
+*.shader
