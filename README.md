@@ -13,6 +13,7 @@ The clone currently has the following features:
 - Bullets hitting asteroids, with explosions and sound effects
 - Material gathering - currently bronze, silver and gold materials
 - Inventory screen to show the current quantities of each material held by the player
+- Main menu
 
 ## Coming Soon
 The following features will be implemented soon:
