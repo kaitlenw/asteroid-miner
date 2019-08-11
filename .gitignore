@@ -70,3 +70,7 @@ Assets/\.DS_Store
 *.ttf
 
 *.shader
+
+*.cginc
+
+*.txt
