@@ -8,11 +8,16 @@ The clone currently has the following features:
 - Firing bullets (including pew pew sound effect :grin:)
 - Spaceship collisions with meteors - bounces off, with sound effects
 - Bullets hitting asteroids, with explosions and sound effects
+- Material gathering - currently bronze, silver and gold materials
+- Inventory screen to show the current quantities of each material held by the player
 
 ## Coming Soon
 The following features will be implemented soon:
-- Mining asteroids!
-- Material gathering
 - Score, fuel and damage stats
+- Planets and currency
+- Selling materials and upgrading the ship
 - Enemies
 - And more...
+
+In addition, screenshots will soon be available on this project's [webpage](https://kaitlenw.github.io/asteroid-miner.html) and here.
+
