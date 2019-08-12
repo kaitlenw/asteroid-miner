@@ -9,11 +9,15 @@ This repo does not contain any of the actual asset files used in the project in 
 The clone currently has the following features:
 - Spaceship movement, including drifting when the thrusters are no longer active
 - Firing bullets (including pew pew sound effect :grin:)
+![Asteroid Mining](/screenshots/asteroid-mining_1.png)
 - Spaceship collisions with meteors - bounces off, with sound effects
 - Bullets hitting asteroids, with explosions and sound effects
+![Asteroid Mining](/screenshots/asteroid-mining_2.png)
 - Material gathering - currently bronze, silver and gold materials
 - Inventory screen to show the current quantities of each material held by the player
+![Inventory](/screenshots/inventory.png)
 - Main menu
+![Start Menu](/screenshots/title-screen.png)
 
 ## Coming Soon
 The following features will be implemented soon:
@@ -23,5 +27,7 @@ The following features will be implemented soon:
 - Enemies
 - And more...
 
-In addition, screenshots will soon be available on this project's [webpage](https://kaitlenw.github.io/asteroid-miner.html) and here.
+This project also has a web-page [here](https://kaitlenw.github.io/asteroid-miner.html).
+
+
 
