@@ -74,3 +74,5 @@ Assets/\.DS_Store
 *.cginc
 
 *.txt
+
+!/screenshots/*.png
