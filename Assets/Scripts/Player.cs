@@ -13,13 +13,16 @@ public class Player : MonoBehaviour
     public AudioClip shootLaser;
     public AudioClip hitMeteor;
     private AudioSource audioSource;
-    public Inventory inventory; 
+    public Inventory inventory;
 
+    public float bounce = 0.5f;
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
         r2d = GetComponent<Rigidbody2D>();
         inventory = Inventory.instance;
+        GetComponent<Collider2D>().sharedMaterial.bounciness = bounce;
+
     }
 
     void FixedUpdate()
@@ -44,9 +47,12 @@ public class Player : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
-        audioSource.PlayOneShot(hitMeteor);
-        shield.enabled = true;
-        Invoke("HideShield", 0.2f);
+        if (collision.gameObject.tag == "Asteroid")
+        {
+            audioSource.PlayOneShot(hitMeteor);
+            shield.enabled = true;
+            Invoke("HideShield", 0.2f);
+        }
     }
     void HideShield()
     {
