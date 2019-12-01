@@ -50,10 +50,9 @@ public class InventoryMenu : MonoBehaviour
         isShopShowing = false;
     }
 
-    public void SellItemsAndResume()
+    public void SellItems()
     {
         inventory.SellSelectedItems();
-        Resume();
         Debug.Log(inventory.money);
     }
 

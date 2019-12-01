@@ -40,15 +40,18 @@ public class ShopSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        selectedForSale = !selectedForSale;
-        glow.enabled = selectedForSale;
-        if (selectedForSale)
+        if (inventory.inventory[item.id] > 0)
         {
-            inventory.sellingList[item.id] = item;
-        }
-        else
-        {
-            inventory.sellingList[item.id] = null;
+            selectedForSale = !selectedForSale;
+            glow.enabled = selectedForSale;
+            if (selectedForSale)
+            {
+                inventory.sellingList[item.id] = item;
+            }
+            else
+            {
+                inventory.sellingList[item.id] = null;
+            }
         }
     }
 
