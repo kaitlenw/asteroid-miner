@@ -1,11 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Planet : MonoBehaviour
 {
     private float defaultBounceValue;
     public float dragValue = 1.0f;
+
+    private Canvas ui;
+    void Start()
+    {
+        ui = GameObject.Find("UIManager").GetComponent<Canvas>();
+    }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
@@ -21,9 +28,8 @@ public class Planet : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.P) && collision.gameObject.tag == "Player")
         {
-
-
             Debug.Log("PLANET");
+            ui.GetComponent<InventoryMenu>().PauseAndShowShop();
 
 
         }

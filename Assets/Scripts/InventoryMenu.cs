@@ -5,7 +5,9 @@ using UnityEngine;
 public class InventoryMenu : MonoBehaviour
 {
     public static bool isInventoryShowing;
+    public static bool isShopShowing;
     public GameObject inventoryUI;
+    public GameObject shopUI;
     public Inventory inventory;
 
     void Start()
@@ -20,18 +22,39 @@ public class InventoryMenu : MonoBehaviour
             {
                 Resume();
             }
-            else
+            else if (!isShopShowing)
             {
                 PauseAndShowInventory();
             }
         }
+        // else if (Input.GetKeyDown(KeyCode.M))
+        // {
+        //     inventory.ResetSellingList();
+        //     if (isShopShowing)
+        //     {
+        //         Resume();
+        //     }
+        //     else if (!isInventoryShowing)
+        //     {
+        //         PauseAndShowShop();
+        //     }
+        // }
     }
 
-    void Resume()
+    public void Resume()
     {
         inventoryUI.SetActive(false);
+        shopUI.SetActive(false);
         Time.timeScale = 1;
         isInventoryShowing = false;
+        isShopShowing = false;
+    }
+
+    public void SellItemsAndResume()
+    {
+        inventory.SellSelectedItems();
+        Resume();
+        Debug.Log(inventory.money);
     }
 
     void PauseAndShowInventory()
@@ -39,5 +62,11 @@ public class InventoryMenu : MonoBehaviour
         inventoryUI.SetActive(true);
         Time.timeScale = 0;
         isInventoryShowing = true;
+    }
+    public void PauseAndShowShop()
+    {
+        shopUI.SetActive(true);
+        Time.timeScale = 0;
+        isShopShowing = true;
     }
 }
