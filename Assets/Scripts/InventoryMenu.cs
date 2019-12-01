@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class InventoryMenu : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class InventoryMenu : MonoBehaviour
     public static bool isShopShowing;
     public GameObject inventoryUI;
     public GameObject shopUI;
+    public GameObject moneyUI;
     public Inventory inventory;
 
     void Start()
@@ -45,6 +47,7 @@ public class InventoryMenu : MonoBehaviour
     {
         inventoryUI.SetActive(false);
         shopUI.SetActive(false);
+        moneyUI.SetActive(false);
         Time.timeScale = 1;
         isInventoryShowing = false;
         isShopShowing = false;
@@ -53,19 +56,28 @@ public class InventoryMenu : MonoBehaviour
     public void SellItems()
     {
         inventory.SellSelectedItems();
+        ShowMoneyPanel();
         Debug.Log(inventory.money);
     }
 
     void PauseAndShowInventory()
     {
         inventoryUI.SetActive(true);
+        ShowMoneyPanel();
         Time.timeScale = 0;
         isInventoryShowing = true;
     }
     public void PauseAndShowShop()
     {
         shopUI.SetActive(true);
+        ShowMoneyPanel();
         Time.timeScale = 0;
         isShopShowing = true;
+    }
+
+    private void ShowMoneyPanel()
+    {
+        moneyUI.transform.Find("MoneyText").gameObject.GetComponent<TMP_Text>().text = "" + inventory.money;
+        moneyUI.SetActive(true);
     }
 }

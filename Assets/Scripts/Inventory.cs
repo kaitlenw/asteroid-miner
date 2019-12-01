@@ -16,8 +16,8 @@ public class Inventory  : MonoBehaviour
         }
         inventory = new int[numberOfUniqueItems];
         sellingList = new Item[numberOfUniqueItems];
-        instance = this;
         money = 0;
+        instance = this;
     }
     #endregion
     public int numberOfUniqueItems = 3;
@@ -66,7 +66,7 @@ public class Inventory  : MonoBehaviour
         }
         if (summary.Length > 0)
         {
-            summary += "Total Profits: " + total;
+            summary += "Total Profits:   <sprite=0>" + total;
         }
         else
         {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class ShopSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
@@ -11,16 +12,18 @@ public class ShopSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public Image glow;
     public Text itemCount;
 
-    public Text description;
-    private Inventory inventory;
+    public GameObject description;
+    public Inventory inventory;
 
+    private TMP_Text descText;
     private bool selectedForSale;
 
-    void Start()
+    void Awake()
     {
         inventory = Inventory.instance;
         selectedForSale = false;
         glow.enabled = false;
+        descText = description.transform.Find("DescriptionText").gameObject.GetComponent<TMP_Text>();
     }
     void OnEnable()
     {
@@ -29,13 +32,13 @@ public class ShopSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         itemCount.text = inventory.inventory[item.id] + "";
         itemCount.enabled = true;
         selectedForSale = false;
-        glow.enabled = false;
-        description.text = inventory.GetSalesSummary();
+        glow.enabled = false; 
+        descText.text = inventory.GetSalesSummary();
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        description.text = item.itemName + "\n\n" + item.description + "\nSelling Price: " + item.sellingPrice;
+        descText.text = item.itemName + "\n\n" + item.description + "\nSelling Price: " + item.sellingPrice;
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -57,6 +60,6 @@ public class ShopSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        description.text = inventory.GetSalesSummary();
+        descText.text = inventory.GetSalesSummary();
     }
 }
