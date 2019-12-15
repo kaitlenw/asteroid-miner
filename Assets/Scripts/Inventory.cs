@@ -89,6 +89,7 @@ public class Inventory  : MonoBehaviour
             }
         }
         money += total;
+        ResetSellingList();
     }
 
     override public string ToString() 

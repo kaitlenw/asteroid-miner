@@ -57,6 +57,11 @@ public class InventoryMenu : MonoBehaviour
     {
         inventory.SellSelectedItems();
         ShowMoneyPanel();
+        ShopSlot[] slots = (ShopSlot[]) FindObjectsOfType<ShopSlot>();
+        foreach (ShopSlot slot in slots)
+        {
+            slot.Reset();
+        }
         Debug.Log(inventory.money);
     }
 
@@ -69,6 +74,7 @@ public class InventoryMenu : MonoBehaviour
     }
     public void PauseAndShowShop()
     {
+        inventory.ResetSellingList();
         shopUI.SetActive(true);
         ShowMoneyPanel();
         Time.timeScale = 0;

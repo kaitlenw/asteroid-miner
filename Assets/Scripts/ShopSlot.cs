@@ -27,12 +27,17 @@ public class ShopSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     }
     void OnEnable()
     {
+        Reset();
+    }
+
+    public void Reset()
+    {
         icon.sprite = item.image;
         icon.enabled = true;
         itemCount.text = inventory.inventory[item.id] + "";
         itemCount.enabled = true;
         selectedForSale = false;
-        glow.enabled = false; 
+        glow.enabled = false;
         descText.text = inventory.GetSalesSummary();
     }
 
