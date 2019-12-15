@@ -58,21 +58,3 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 Assets/\.DS_Store
-
-*.jpg
-
-*.PNG
-
-*.ogg
-
-*.prefab
-
-*.ttf
-
-*.shader
-
-*.cginc
-
-*.txt
-
-!/screenshots/*.png

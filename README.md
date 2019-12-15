@@ -3,7 +3,9 @@
 WIP of an Asteroid Miner clone. Example footage of the original game can be found [here](https://www.youtube.com/watch?v=v1fseBg0E-g).
 
 ## Please Note!
-This repo does not contain any of the actual asset files used in the project in order to keep its size small; only the files required by Unity to open and edit the project, and the C# code written to implement various aspects of the game. As such, it is not possible to build the project from this repo.
+~~This repo does not contain any of the actual asset files used in the project in order to keep its size small; only the files required by Unity to open and edit the project, and the C# code written to implement various aspects of the game. As such, it is not possible to build the project from this repo.~~
+
+It should now be possible to build the project from this repo, as the necessary assets are now included.
 
 ## Features Currently Implemented
 The clone currently has the following features:
