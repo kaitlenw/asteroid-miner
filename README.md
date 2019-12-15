@@ -14,16 +14,17 @@ The clone currently has the following features:
 - Bullets hitting asteroids, with explosions and sound effects
 ![Asteroid Mining](/screenshots/asteroid-mining_2.png)
 - Material gathering - currently bronze, silver and gold materials
-- Inventory screen to show the current quantities of each material held by the player
+- Inventory screen to show the current quantities of each material and amount of money held by the player
 ![Inventory](/screenshots/inventory.png)
 - Main menu
 ![Start Menu](/screenshots/title-screen.png)
+- Planets and selling materials that have been collected from asteroids
+![Planets](screenshots/planet-shop2.png)
 
 ## Coming Soon
 The following features will be implemented soon:
 - Score, fuel and damage stats
-- Planets and currency
-- Selling materials and upgrading the ship
+- Upgrading the ship
 - Enemies
 - And more...
 
