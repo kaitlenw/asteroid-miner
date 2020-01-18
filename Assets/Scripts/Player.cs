@@ -1,15 +1,36 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
     private Rigidbody2D r2d;
     public Rigidbody2D laser;
     public SpriteRenderer shield;
+    public GameObject thrusters;
     public float speed = 5f;
     public float turnSpeed = 2.5f;
     public float projSpeed = 2.5f;
+
+    // max fuel capacity
+    public float maxFuel = 1000.0f;
+
+    // current fuel
+    public float currentFuel = 1000.0f;
+    
+    // how much fuel is used each time the thrusters are engaged
+    private float fuelUsage = 0.5f;
+
+    // max amount of shields
+    public float maxShields = 1000.0f;
+    // current amount of shield
+    public float shields = 1000.0f;
+    // how much shield is lost each time damage is taken
+    private float shieldDamage = 0.2f;
+    public Slider fuelSlider;
+    public Slider shieldSlider;
+
     public AudioClip shootLaser;
     public AudioClip hitMeteor;
     private AudioSource audioSource;
@@ -23,12 +44,30 @@ public class Player : MonoBehaviour
         inventory = Inventory.instance;
         GetComponent<Collider2D>().sharedMaterial.bounciness = bounce;
 
+        // assumption that fuel is full to begin with
+        fuelSlider.maxValue = maxFuel;
+        fuelSlider.value = currentFuel;
+
+        // asumption that shields are full to begin with
+        shieldSlider.maxValue = maxShields;
+        shieldSlider.value = shields;
+
     }
 
     void FixedUpdate()
     {
         float x = Input.GetAxis("Horizontal");
         float y = Input.GetAxis("Vertical");
+
+        if (x + y != 0)
+        {
+            currentFuel -= fuelUsage;
+            thrusters.SetActive(true);
+        }
+        else
+        {
+            thrusters.SetActive(false);
+        }
 
         Vector2 moveVec = new Vector2(x, y) * speed;
         r2d.AddForce(moveVec);
@@ -51,11 +90,18 @@ public class Player : MonoBehaviour
         {
             audioSource.PlayOneShot(hitMeteor);
             shield.enabled = true;
+            shields -= shieldDamage;
             Invoke("HideShield", 0.2f);
         }
     }
     void HideShield()
     {
         shield.enabled = false;
+    }
+
+    void OnGUI()
+    {
+        fuelSlider.value = currentFuel;
+        shieldSlider.value = shields;
     }
 }
