@@ -10,11 +10,12 @@ public class InventoryMenu : MonoBehaviour
     public GameObject inventoryUI;
     public GameObject shopUI;
     public GameObject moneyUI;
-    public Inventory inventory;
+    private Inventory inventory;
+    public Player player;
 
     void Start()
     {
-        inventory = Inventory.instance;
+        inventory = player.inventory;
     }
     void Update()
     {
@@ -53,16 +54,15 @@ public class InventoryMenu : MonoBehaviour
         isShopShowing = false;
     }
 
-    public void SellItems()
+    public void RefuelShip()
     {
-        inventory.SellSelectedItems();
-        ShowMoneyPanel();
-        ShopSlot[] slots = (ShopSlot[]) FindObjectsOfType<ShopSlot>();
-        foreach (ShopSlot slot in slots)
+        int missingFuel = player.GetMissingFuel();
+        if (missingFuel > inventory.money)
         {
-            slot.Reset();
+            missingFuel = inventory.money;
         }
-        Debug.Log(inventory.money);
+        inventory.money -= missingFuel;
+        player.currentFuel += missingFuel;
     }
 
     void PauseAndShowInventory()
@@ -85,5 +85,18 @@ public class InventoryMenu : MonoBehaviour
     {
         moneyUI.transform.Find("MoneyText").gameObject.GetComponent<TMP_Text>().text = "" + inventory.money;
         moneyUI.SetActive(true);
+    }
+
+    public void OnGUI()
+    {
+        if (isShopShowing)
+        {
+            ShopSlot[] slots = (ShopSlot[]) FindObjectsOfType<ShopSlot>();
+            foreach (ShopSlot slot in slots)
+            {
+                slot.Reset();
+            }
+        }
+        ShowMoneyPanel();
     }
 }

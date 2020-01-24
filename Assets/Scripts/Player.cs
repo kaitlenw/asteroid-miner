@@ -14,13 +14,13 @@ public class Player : MonoBehaviour
     public float projSpeed = 2.5f;
 
     // max fuel capacity
-    public float maxFuel = 1000.0f;
+    public int maxFuel = 1000;
 
     // current fuel
-    public float currentFuel = 1000.0f;
+    public int currentFuel = 1000;
     
     // how much fuel is used each time the thrusters are engaged
-    private float fuelUsage = 0.5f;
+    private int fuelUsage = 1;
 
     // max amount of shields
     public float maxShields = 1000.0f;
@@ -98,7 +98,10 @@ public class Player : MonoBehaviour
     {
         shield.enabled = false;
     }
-
+    public int GetMissingFuel()
+    {
+        return maxFuel - currentFuel;
+    }
     void OnGUI()
     {
         fuelSlider.value = currentFuel;

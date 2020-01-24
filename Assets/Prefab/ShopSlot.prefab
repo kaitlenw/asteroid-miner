@@ -166,7 +166,7 @@ MonoBehaviour:
   icon: {fileID: 0}
   glow: {fileID: 0}
   itemCount: {fileID: 0}
-  description: {fileID: 0}
+  inventory: {fileID: 0}
 --- !u!1 &8594022674867749016
 GameObject:
   m_ObjectHideFlags: 0

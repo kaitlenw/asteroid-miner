@@ -75,21 +75,11 @@ public class Inventory  : MonoBehaviour
         return summary;
     }
 
-    public void SellSelectedItems()
+    public void SellItem(Item item)
     {
-        int total = 0;
-        foreach (Item item in sellingList)
-        {
-            if (item != null)
-            {
-                int itemProfits = item.sellingPrice * inventory[item.id];
-                inventory[item.id] = 0;
-
-                total += itemProfits; 
-            }
-        }
-        money += total;
-        ResetSellingList();
+        int itemProfits = item.sellingPrice * inventory[item.id];
+        inventory[item.id] = 0;
+        money += itemProfits;
     }
 
     override public string ToString() 
