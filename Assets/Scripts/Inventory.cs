@@ -15,19 +15,20 @@ public class Inventory  : MonoBehaviour
             return;
         }
         inventory = new int[numberOfUniqueItems];
-        sellingList = new Item[numberOfUniqueItems];
         money = 0;
         instance = this;
+        ownedUpgrades = new List<Upgrade>();
     }
     #endregion
     public int numberOfUniqueItems = 3;
     public int[] inventory;
-    public Item[] sellingList;
+
     // how many items the inventory can hold
     public int inventoryCapacity;
 
     public int money;
 
+    public List<Upgrade> ownedUpgrades;
     // returns true if the item fits in the inventory
     public bool AddItem(int id)
     {
@@ -46,40 +47,25 @@ public class Inventory  : MonoBehaviour
         return AddItem(item.id);
     }
 
-    public void ResetSellingList()
-    {
-        sellingList = new Item[numberOfUniqueItems];
-    }
-
-    public string GetSalesSummary()
-    {
-        string summary = "";
-        int total = 0;
-        foreach (Item item in sellingList)
-        {
-            if (item != null)
-            {
-                int itemProfits = item.sellingPrice * inventory[item.id];
-                summary += item.itemName + ": " +item.sellingPrice + " * " + inventory[item.id] + " = " + itemProfits + "\n";
-                total += itemProfits;
-            }
-        }
-        if (summary.Length > 0)
-        {
-            summary += "Total Profits:   <sprite=0>" + total;
-        }
-        else
-        {
-            summary = "No items selected for sale.";
-        }
-        return summary;
-    }
-
     public void SellItem(Item item)
     {
         int itemProfits = item.sellingPrice * inventory[item.id];
         inventory[item.id] = 0;
         money += itemProfits;
+    }
+
+    public void BuyUpgradeItem(Upgrade upgrade)
+    {
+        if (money < upgrade.price)
+        {
+            Debug.Log("Can not buy " + upgrade.upgradeName + " - requires " + upgrade.price + " money.");
+        }
+        else
+        {
+            ownedUpgrades.Add(upgrade);
+            money -= upgrade.price;
+            Debug.Log("Buying " + upgrade.upgradeName + ".");
+        }
     }
 
     override public string ToString() 
