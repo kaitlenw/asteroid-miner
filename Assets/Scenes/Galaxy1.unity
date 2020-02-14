@@ -530,10 +530,9 @@ MonoBehaviour:
   speed: 2.5
   turnSpeed: 2.5
   projSpeed: 2.5
-  maxFuel: 1000
-  currentFuel: 1000
-  maxShields: 1000
-  shields: 1000
+  startMaxFuel: 1000
+  startMaxShields: 1000
+  lostShields: 0
   fuelSlider: {fileID: 134892127}
   shieldSlider: {fileID: 1216575631}
   shootLaser: {fileID: 8300000, guid: 26b2e3268cf0d4712a5dfa8a4004501c, type: 3}
@@ -764,9 +763,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numberOfUniqueItems: 3
   inventory: 
-  inventoryCapacity: 5
-  money: 0
-  ownedUpgrades: []
+  startCapacity: 5
+  money: 100
+  ownedUpgrades:
+  - {fileID: 11400000, guid: 01808fb37b2c343e8a2ecde9a07363e2, type: 2}
 --- !u!1 &88346566
 GameObject:
   m_ObjectHideFlags: 0
@@ -4296,11 +4296,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2083478698}
     m_Modifications:
+    - target: {fileID: 1749587541326998833, guid: 0d539c923cdf94d069a649c2b458aeba,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3833813863881564150, guid: 0d539c923cdf94d069a649c2b458aeba,
         type: 3}
       propertyPath: upgrade
       value: 
-      objectReference: {fileID: 11400000, guid: 43aacce5ea44b4a0aaa316e43d15deb7,
+      objectReference: {fileID: 11400000, guid: 01808fb37b2c343e8a2ecde9a07363e2,
         type: 2}
     - target: {fileID: 3833813863881564150, guid: 0d539c923cdf94d069a649c2b458aeba,
         type: 3}
@@ -4315,7 +4320,7 @@ PrefabInstance:
     - target: {fileID: 3833813863881564150, guid: 0d539c923cdf94d069a649c2b458aeba,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6607426444153544427, guid: 0d539c923cdf94d069a649c2b458aeba,
         type: 3}
@@ -4440,7 +4445,7 @@ PrefabInstance:
         type: 3}
       propertyPath: upgrade
       value: 
-      objectReference: {fileID: 11400000, guid: 43aacce5ea44b4a0aaa316e43d15deb7,
+      objectReference: {fileID: 11400000, guid: e906c83f5e7d64496b83e576a15f0270,
         type: 2}
     - target: {fileID: 3833813863881564150, guid: 0d539c923cdf94d069a649c2b458aeba,
         type: 3}
@@ -4455,7 +4460,7 @@ PrefabInstance:
     - target: {fileID: 3833813863881564150, guid: 0d539c923cdf94d069a649c2b458aeba,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6607426444153544427, guid: 0d539c923cdf94d069a649c2b458aeba,
         type: 3}
@@ -5535,7 +5540,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 1481822059}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 

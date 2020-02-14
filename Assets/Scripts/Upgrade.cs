@@ -5,11 +5,38 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Upgrade", menuName="Inventory/Upgrade")]
 public class Upgrade : ScriptableObject
 {
+
+    public enum UpgradeType
+    {
+        SHIELD_UPGRADE,
+        FUEL_UPGRADE,
+        LASER_UPGRADE,
+        INVENTORY_UPGRADE,
+    }
+
     public int id;
     public string upgradeName;
     public string description;
     public Sprite image;
     public int price;
+
+    // how much the upgrade improves things by (e.g extra amount of fuel, extra inventory spaces - may need to change later for more complex upgrades)
+
+    [SerializeField]
+    private int amount;
+    public int Amount
+    {
+        get
+        {
+            return amount;
+        }
+        set
+        {
+            amount = value;
+        }
+    }
+
+    public UpgradeType upgradeType;
 
     public Upgrade(int id, string upgradeName, string description, int price)
     {

@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b57ce09abe1dc44a0862e6a48e96f834, type: 3}
-  m_Name: Laser1
+  m_Name: Inventory1
   m_EditorClassIdentifier: 
   id: 0
-  upgradeName: Laser1
-  description: Destroy more things with this dual laser.
-  image: {fileID: 21300000, guid: 18d675b92fbaf4bafb3cde71a6f5f1aa, type: 3}
-  price: 50
-  amount: 10
-  upgradeType: 2
+  upgradeName: InventoryUpgrade
+  description: Adds extra inventory space so you can hoard more stuff on your travels
+  image: {fileID: 21300000, guid: 95f042b52995844169ef18e4e04613be, type: 3}
+  price: 30
+  amount: 5
+  upgradeType: 3

@@ -20,7 +20,7 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     {
         inventory = Inventory.instance;
         descText = description.transform.Find("DescriptionText").gameObject.GetComponent<TMP_Text>();
-        descText.text = $"Inventory\n\nTotal number of Items: {inventory.Count()}\nCurrent Capacity: {inventory.inventoryCapacity}";
+        descText.text = $"Inventory\n\nTotal number of Items: {inventory.Count()}\nCurrent Capacity: {inventory.InventoryCapacity}";
     }
     void OnEnable()
     {
@@ -28,7 +28,7 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         icon.enabled = true;
         itemCount.text = Inventory.instance.inventory[item.id] + "";
         itemCount.enabled = true;
-        descText.text = $"Inventory\n\nTotal number of Items: {inventory.Count()}\nCurrent Capacity: {inventory.inventoryCapacity}";
+        descText.text = $"Inventory\n\nTotal number of Items: {inventory.Count()}\nCurrent Capacity: {inventory.InventoryCapacity}";
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -38,6 +38,6 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        descText.text = $"Inventory\n\nTotal number of Items: {inventory.Count()}\nCurrent Capacity: {inventory.inventoryCapacity}";
+        descText.text = $"Inventory\n\nTotal number of Items: {inventory.Count()}\nCurrent Capacity: {inventory.InventoryCapacity}";
     }
 }

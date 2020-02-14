@@ -56,13 +56,13 @@ public class InventoryMenu : MonoBehaviour
 
     public void RefuelShip()
     {
-        int missingFuel = player.GetMissingFuel();
+        int missingFuel = player.UsedFuel;
         if (missingFuel > inventory.money)
         {
             missingFuel = inventory.money;
         }
         inventory.money -= missingFuel;
-        player.currentFuel += missingFuel;
+        player.UsedFuel -= missingFuel;
     }
 
     void PauseAndShowInventory()
