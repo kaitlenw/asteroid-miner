@@ -13,19 +13,39 @@ public class Player : MonoBehaviour
     public float turnSpeed = 2.5f;
     public float projSpeed = 2.5f;
 
-    // max fuel capacity
-    public int maxFuel = 1000;
+    // starting max fuel capacity
+    public int startMaxFuel = 1000;
 
-    // current fuel
-    public int currentFuel = 1000;
+    public int MaxFuel
+    {
+        get
+        {
+            return startMaxFuel + inventory.GetFuelUpgrade();
+        }
+    }
+
+    // amount of fuel that has been used by the player
+    public int UsedFuel
+    {
+        get;
+        set;
+    } = 0;
     
     // how much fuel is used each time the thrusters are engaged
     private int fuelUsage = 1;
 
-    // max amount of shields
-    public float maxShields = 1000.0f;
-    // current amount of shield
-    public float shields = 1000.0f;
+    // starting max amount of shields
+    public float startMaxShields = 1000.0f;
+
+    public float MaxShields
+    {
+        get
+        {
+            return startMaxShields + inventory.GetShieldUpgrade();
+        }
+    }
+    // amount of damage that the player has taken
+    public float lostShields = 0.0f;
     // how much shield is lost each time damage is taken
     private float shieldDamage = 0.2f;
     public Slider fuelSlider;
@@ -44,14 +64,7 @@ public class Player : MonoBehaviour
         inventory = Inventory.instance;
         GetComponent<Collider2D>().sharedMaterial.bounciness = bounce;
 
-        // assumption that fuel is full to begin with
-        fuelSlider.maxValue = maxFuel;
-        fuelSlider.value = currentFuel;
-
-        // asumption that shields are full to begin with
-        shieldSlider.maxValue = maxShields;
-        shieldSlider.value = shields;
-
+        UpdateStatusDisplay();
     }
 
     void FixedUpdate()
@@ -61,7 +74,7 @@ public class Player : MonoBehaviour
 
         if (x + y != 0)
         {
-            currentFuel -= fuelUsage;
+            UsedFuel += fuelUsage;
             thrusters.SetActive(true);
         }
         else
@@ -90,7 +103,7 @@ public class Player : MonoBehaviour
         {
             audioSource.PlayOneShot(hitMeteor);
             shield.enabled = true;
-            shields -= shieldDamage;
+            lostShields += shieldDamage;
             Invoke("HideShield", 0.2f);
         }
     }
@@ -98,13 +111,26 @@ public class Player : MonoBehaviour
     {
         shield.enabled = false;
     }
-    public int GetMissingFuel()
+    public int GetCurrentFuel()
     {
-        return maxFuel - currentFuel;
+        return MaxFuel - UsedFuel;
+    }
+
+    public float GetCurrentShields()
+    {
+        return MaxShields - lostShields;
     }
     void OnGUI()
     {
-        fuelSlider.value = currentFuel;
-        shieldSlider.value = shields;
+        UpdateStatusDisplay();
+    }
+
+    private void UpdateStatusDisplay()
+    {
+        fuelSlider.maxValue = MaxFuel;
+        shieldSlider.maxValue = MaxShields;
+
+        fuelSlider.value = GetCurrentFuel();
+        shieldSlider.value = GetCurrentShields();
     }
 }

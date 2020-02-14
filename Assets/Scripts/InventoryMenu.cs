@@ -56,13 +56,13 @@ public class InventoryMenu : MonoBehaviour
 
     public void RefuelShip()
     {
-        int missingFuel = player.GetMissingFuel();
+        int missingFuel = player.UsedFuel;
         if (missingFuel > inventory.money)
         {
             missingFuel = inventory.money;
         }
         inventory.money -= missingFuel;
-        player.currentFuel += missingFuel;
+        player.UsedFuel -= missingFuel;
     }
 
     void PauseAndShowInventory()
@@ -74,7 +74,6 @@ public class InventoryMenu : MonoBehaviour
     }
     public void PauseAndShowShop()
     {
-        inventory.ResetSellingList();
         shopUI.SetActive(true);
         ShowMoneyPanel();
         Time.timeScale = 0;
@@ -91,8 +90,8 @@ public class InventoryMenu : MonoBehaviour
     {
         if (isShopShowing)
         {
-            ShopSlot[] slots = (ShopSlot[]) FindObjectsOfType<ShopSlot>();
-            foreach (ShopSlot slot in slots)
+            SellingSlot[] slots = (SellingSlot[]) FindObjectsOfType<SellingSlot>();
+            foreach (SellingSlot slot in slots)
             {
                 slot.Reset();
             }

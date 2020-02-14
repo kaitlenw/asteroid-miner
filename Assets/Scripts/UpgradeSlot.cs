@@ -4,12 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class ShopSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
+public class UpgradeSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
-    public Item item;
+    public Upgrade upgrade;
     public Image icon;
     public Image glow;
-    public Text itemCount;
     public Inventory inventory;
 
     private bool isMouseOver;
@@ -30,20 +29,16 @@ public class ShopSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     }
     public void Reset()
     {
-        icon.sprite = item.image;
+        icon.sprite = upgrade.image;
         icon.enabled = true;
-        itemCount.text = inventory.inventory[item.id] + "";
-        itemCount.enabled = true;
         glow.enabled = false;
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (inventory.inventory[item.id] > 0)
-        {
-            inventory.SellItem(item);
-            Reset();
-        }
+        inventory.BuyUpgradeItem(this.upgrade);
+        Debug.Log("Buy Upgrade: " + upgrade.upgradeName);
+        Reset();
     }
 
     public void OnPointerEnter(PointerEventData eventData)
