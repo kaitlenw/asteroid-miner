@@ -17,6 +17,8 @@ public class Enemy : MonoBehaviour
     private float xDir;
     private float yDir;
 
+    public Transform target;
+
     void Start()
     {
         r2d = GetComponent<Rigidbody2D>();
@@ -35,12 +37,13 @@ public class Enemy : MonoBehaviour
             thrusters.SetActive(false);
         }
 
+        Vector3 targetDirection = target.position - transform.position;
         Vector2 moveVec = new Vector2(xDir, yDir) * speed;
-        r2d.AddForce(moveVec);
+        r2d.AddForce(targetDirection);
 
-        if (moveVec != Vector2.zero)
+        if (targetDirection != Vector3.zero)
         {
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Vector3.forward, moveVec), Time.fixedDeltaTime * turnSpeed);
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Vector3.forward, targetDirection), Time.fixedDeltaTime * turnSpeed);
         }
         // Check to see if Space is pressed
         if (Input.GetKeyDown("space"))
@@ -65,6 +68,9 @@ public class Enemy : MonoBehaviour
 
     private void SetDirection()
     {
+        // probably change this to just be direction.
+        // currently the magnitude of xDir and yDir also have influence on the speed of the enemy,
+        // like telling the enemy how much it should "put its foot down"
         xDir = Random.Range(-1.0f, 1.0f);
         yDir = Random.Range(-1.0f, 1.0f);
     }
