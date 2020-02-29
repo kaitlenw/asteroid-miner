@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -8,7 +9,7 @@ public class Enemy : MonoBehaviour
     public Rigidbody2D laser;
     public SpriteRenderer shield;
     public GameObject thrusters;
-    public float speed = 5f;
+    public float speed = 2f;
     public float turnSpeed = 2.5f;
     public float projSpeed = 2.5f;
     
@@ -19,37 +20,70 @@ public class Enemy : MonoBehaviour
 
     public Transform target;
 
+    private Collider2D enemyCollider;
+
+    private float radius = 2.0f;
+
+    public float strength = 90f;
+
     void Start()
     {
         r2d = GetComponent<Rigidbody2D>();
-        GetComponent<Collider2D>().sharedMaterial.bounciness = bounce;
-        InvokeRepeating("SetDirection", 2.0f, 0.3f);
+        enemyCollider = GetComponent<Collider2D>();
+        enemyCollider.sharedMaterial.bounciness = bounce;
     }
 
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere (transform.position, radius);
+
+    }
     void FixedUpdate()
     {
-        if (xDir + yDir != 0)
+        Vector3 targetDirection = (target.position - transform.position);
+        if (Vector3.Dot(targetDirection, transform.forward) >= 0.9)
+        {
+            targetDirection = Vector3.zero;
+        }
+        enemyCollider.enabled = false;
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, radius);
+        enemyCollider.enabled = true;
+        if ((colliders.Length > 0))
+        {
+            Vector3 force = new Vector3();
+            foreach (Collider2D collider in colliders)
+            {
+                if (collider.tag != "Player")
+                {
+                    Vector3 direction = collider.transform.position - transform.position;
+                    float distance = Vector3.Distance(transform.position, collider.transform.position);
+                    force += -direction * (strength/Mathf.Pow(distance, 2));
+                    try 
+                    {
+                        LineRenderer lineRenderer = collider.gameObject.GetComponent<LineRenderer>();
+                        lineRenderer.SetVertexCount(2);
+                        lineRenderer.SetPosition(0, collider.transform.position);
+                        lineRenderer.SetPosition(1, force * 20 + collider.transform.position);
+
+                    }
+                    catch (MissingComponentException e)
+                    {
+                    }
+                }
+            }
+            targetDirection += force;
+        }
+
+        r2d.AddForce(targetDirection * speed);
+        if (targetDirection != Vector3.zero)
         {
             thrusters.SetActive(true);
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Vector3.forward, targetDirection), Time.fixedDeltaTime * turnSpeed);
         }
         else
         {
             thrusters.SetActive(false);
-        }
-
-        Vector3 targetDirection = target.position - transform.position;
-        Vector2 moveVec = new Vector2(xDir, yDir) * speed;
-        r2d.AddForce(targetDirection);
-
-        if (targetDirection != Vector3.zero)
-        {
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Vector3.forward, targetDirection), Time.fixedDeltaTime * turnSpeed);
-        }
-        // Check to see if Space is pressed
-        if (Input.GetKeyDown("space"))
-        {
-            // Instantiate an laser
-            Rigidbody2D laserInstance = Instantiate(laser, transform.position, transform.rotation);
         }
     }
     void OnCollisionEnter2D(Collision2D collision)
@@ -64,15 +98,6 @@ public class Enemy : MonoBehaviour
     void HideShield()
     {
         shield.enabled = false;
-    }
-
-    private void SetDirection()
-    {
-        // probably change this to just be direction.
-        // currently the magnitude of xDir and yDir also have influence on the speed of the enemy,
-        // like telling the enemy how much it should "put its foot down"
-        xDir = Random.Range(-1.0f, 1.0f);
-        yDir = Random.Range(-1.0f, 1.0f);
     }
     
 }
