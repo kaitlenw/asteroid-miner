@@ -24,7 +24,7 @@ public class Enemy : MonoBehaviour
 
     private float radius = 2.0f;
 
-    public float strength = 90f;
+    public float strength = 5.0f;
 
     void Start()
     {
@@ -52,9 +52,12 @@ public class Enemy : MonoBehaviour
         if ((colliders.Length > 0))
         {
             Vector3 force = new Vector3();
+            // We use anti-gravity to simulate obstacle avoidance for the enemy AI
+            // The player does not provide an antigravity force against the enemy
+            // Lasers do not provide an antigravity force against the enemy--make the game easier by not having the enemy avoid bullets 
             foreach (Collider2D collider in colliders)
             {
-                if (collider.tag != "Player")
+                if (collider.tag != "Player" && collider.tag != "Laser")
                 {
                     Vector3 direction = collider.transform.position - transform.position;
                     float distance = Vector3.Distance(transform.position, collider.transform.position);
@@ -67,7 +70,7 @@ public class Enemy : MonoBehaviour
                         lineRenderer.SetPosition(1, force * 20 + collider.transform.position);
 
                     }
-                    catch (MissingComponentException e)
+                    catch (MissingComponentException)
                     {
                     }
                 }
